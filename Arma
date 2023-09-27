@@ -1,1 +1,76 @@
+package com.mycompany.jogorpg3;
 
+import java.util.Random;
+
+
+public class Arma {
+    private final String nomeArma;
+    private final int bonusAtaque;
+
+    public Arma(String nomeArma, int bonusAtaque) {
+        this.nomeArma = nomeArma;
+        this.bonusAtaque = bonusAtaque;
+    }
+
+    public String getNomeArma() {
+        return nomeArma;
+    }
+
+    public int getBonusAtaque() {
+        return bonusAtaque;
+    }
+    
+
+ 
+    Random random = new Random();
+    int DanoConst = 0;
+    double damage = 0;
+    int dado6Lados = random.nextInt(5) + 1;  
+    int dado4Lados = random.nextInt(3) + 1;
+    int dado12Lados = random.nextInt(11) + 1;
+    
+
+    public double Bituca(int destreza){
+        DanoConst += 6;
+        damage += dado6Lados + dado6Lados + dado4Lados + DanoConst;
+        
+        return damage;
+     }   
+     public double Garrafa(int destreza){
+        DanoConst += 6;
+        damage += dado6Lados + dado6Lados + dado4Lados + DanoConst;
+        
+        return damage;
+     }
+    
+    
+    public double Faca(int destreza){
+        DanoConst += 6;
+        damage += dado6Lados + dado6Lados + dado4Lados + DanoConst;
+        
+        return damage;
+     }
+     
+  
+    public double Tamborete(int forca){
+        DanoConst += 8;
+        damage += DanoConst + dado12Lados + forca*1.5;
+        
+        return damage;
+    }
+    
+    public double Pa(int forca){
+        DanoConst += 10;
+        damage += DanoConst + dado12Lados + forca*1.5;
+        
+        return damage;
+     }
+    
+     public double LaminaCaos(int forca){
+        DanoConst += 10;
+        damage += DanoConst + dado12Lados + forca*1.5;
+        
+        return damage;
+    }
+
+}
