@@ -1,1 +1,56 @@
+package com.mycompany.jogorpg3;
+
+
+public class Armadura {
+    private final String nomeArmadura;
+    private final int bonusDefesa;
+
+    public Armadura(String nomeArmadura, int bonusDefesa) {
+        this.nomeArmadura = nomeArmadura;
+        this.bonusDefesa = bonusDefesa;
+    }
+
+    public String getNomeArmadura() {
+        return nomeArmadura;
+    }
+
+    public int getBonusDefesa() {
+        return bonusDefesa;
+    }
+    
+
+    int DefesaConstante = 0;
+    double defesa = 0;
+   
+    public double CamisaVasco(int constituicao){ 
+        DefesaConstante = 11;
+        defesa = DefesaConstante + constituicao*1.5;
+        
+        return defesa;
+    }
+    
+    public double JaquetadeCouro (int constituicao){
+        DefesaConstante = 12;
+        defesa = DefesaConstante + constituicao*1.5;
+        
+        return defesa;
+    }
+    
+    public double AventaldeCozinha(int constituicao){ 
+        DefesaConstante = 17;
+        defesa = DefesaConstante + constituicao*1.5;
+        
+        return defesa;
+    }
+    
+    public double CapadoBatman(int constituicao){ 
+        DefesaConstante = 18;
+        defesa = DefesaConstante + constituicao*1.5;
+        
+        return defesa;
+    }
+
+    
+    
+}
 
