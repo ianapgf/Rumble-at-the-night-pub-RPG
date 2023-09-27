@@ -1,1 +1,21 @@
+package com.mycompany.jogorpg3;
+
+
+class Magia {
+    private String nomeMagia;
+    private int danoMagia;
+
+    public Magia(String nomeMagia, int danoMagia) {
+        this.nomeMagia = nomeMagia;
+        this.danoMagia = danoMagia;
+    }
+
+    public String getNomeMagia() {
+        return nomeMagia;
+    }
+
+    public int getDanoMagia() {
+        return danoMagia;
+    }
+}
 
