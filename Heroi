@@ -1,1 +1,149 @@
+package com.mycompany.jogorpg3;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
+public class Heroi {
+    private int pocoes = 3;
+    private static final int VIDA_POCOES = 400;
+    private final String nomeHeroi;
+    private int vidaHeroi;
+    private final int ataqueHeroiBase;
+    private Arma armaEquipada;
+    private Armadura armaduraEquipada;
+    private List<Recompensa> inventario = new ArrayList<>();
+    private Magia magia;
+    
+    private int forca;
+    private int constituicao;
+    private int agilidade;
+    private int destreza;
+    
+    private Arma gerarArmaRecompensa() {
+        List<Arma> armas = Arrays.asList(
+            new Arma("serra", 55),
+            new Arma("serpa", 35),
+            new Arma("tuli", 10)
+        );
+        
+    Random rand = new Random();
+    return armas.get(rand.nextInt(armas.size()));
+}
+     public void definirAtributos(int forca, int constituicao, int agilidade, int destreza) {
+        this.forca = forca;
+        this.constituicao = constituicao;
+        this.agilidade = agilidade;
+        this.destreza = destreza;
+    }
+    
+    public void coletarRecompensa(Recompensa recompensa) {
+        inventario.add(recompensa);
+        System.out.println("Recompensa adicionada ao seu inventário!");
+
+        Arma arma = recompensa.getArma();
+        if (arma != null) {
+            equiparArma(arma);
+            System.out.println("Você equipou a arma: " + arma.getNomeArma());
+        }
+
+        Armadura armadura = recompensa.getArmadura();
+        if (armadura != null) {
+            equiparArmadura(armadura);
+            System.out.println("Você equipou a armadura: " + armadura.getNomeArmadura());
+        }
+    }
+    
+    
+    public void defender() {
+        System.out.println("Você se defendeu do próximo ataque!");
+    }
+    
+public void receberDano(int dano, boolean estaDefendendo) {
+        int danoTotal = estaDefendendo ? dano / 2 : dano; // Se estiver defendendo, recebe metade do dano
+        danoTotal -= getDefesaTotal();
+        if (danoTotal < 0) danoTotal = 0;
+        vidaHeroi -= danoTotal;
+        if (estaDefendendo) {
+            System.out.println("Você se defendeu e recebeu apenas " + danoTotal + " de dano!");
+        } else {
+            System.out.println("Você recebeu " + danoTotal + " de dano!");
+        }
+    }
+
+    
+    public Heroi(String nomeHeroi, int vidaHeroi, int ataqueHeroiBase) {
+        this.nomeHeroi = nomeHeroi;
+        this.vidaHeroi = vidaHeroi;
+        this.ataqueHeroiBase = ataqueHeroiBase;
+        this.magia = new Magia("Bola de Fogo", 250); // Adicionando a magia Bola de Fogo com dano de 300.
+    
+    }
+
+    public String getNomeHeroi() {
+        return nomeHeroi;
+    }
+
+    public int getVidaHeroi() {
+        return vidaHeroi;
+    }
+
+    public boolean estaVivo() {
+        return vidaHeroi > 0;
+    }
+
+    public void equiparArma(Arma arma) {
+        this.armaEquipada = arma;
+        System.out.println("Você equipou a " + arma.getNomeArma() + "!");
+    }
+
+    public void equiparArmadura(Armadura armadura) {
+        this.armaduraEquipada = armadura;
+        System.out.println("Você equipou a " + armadura.getNomeArmadura() + "!");
+    }
+
+    public int getAtaqueTotal() {
+        if (armaEquipada != null) {
+            return ataqueHeroiBase + armaEquipada.getBonusAtaque();
+        }
+        return ataqueHeroiBase;
+    }
+
+    public int getDefesaTotal() {
+        if (armaduraEquipada != null) {
+            return armaduraEquipada.getBonusDefesa();
+        }
+        return 0;
+    }
+
+    public void atacar(Vilao vilao) {
+        vilao.receberDano(getAtaqueTotal());
+        System.out.println("Você causou " + getAtaqueTotal() + " de dano no vilão!");
+    }
+
+
+    public void receberDano(int dano) {
+        int danoTotal = dano - getDefesaTotal();
+        if (danoTotal < 0) danoTotal = 0;
+        vidaHeroi -= danoTotal;
+        System.out.println("Você recebeu " + danoTotal + " de dano!");
+        
+    }
+    public void usarPocao() {
+    if (pocoes > 0) {
+        vidaHeroi += VIDA_POCOES;
+        pocoes--;
+        System.out.println("Você tomou uma geladinha da boa e restaurou " + VIDA_POCOES + " pontos de vida!");
+        System.out.println("Cervejinhas restantes: " + pocoes);
+    } else {
+        System.out.println("Você não tem mais Cerveja!");
+    }
+}
+    
+    public void usarMagia(Vilao vilao) {
+        vilao.receberDano(this.magia.getDanoMagia());
+        System.out.println(this.getNomeHeroi() + " usou " + this.magia.getNomeMagia() + " causando " + this.magia.getDanoMagia() + " de dano!");
+    }
+}
 
