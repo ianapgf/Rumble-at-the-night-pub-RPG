@@ -1,1 +1,45 @@
 
+public class Vilao {
+    private final String nomeVilao;
+    private int vidaVilao;
+    private final int ataqueVilaoBase;
+    
+
+    public Vilao(String nomeVilao, int vidaVilao, int ataqueVilaoBase) {
+        this.nomeVilao = nomeVilao;
+        this.vidaVilao = vidaVilao;
+        this.ataqueVilaoBase = ataqueVilaoBase;
+    }
+
+    public String getNomeVilao() {
+        return nomeVilao;
+    }
+
+    public int getVidaVilao() {
+        return vidaVilao;
+    }
+
+    public int getAtaqueVilao() {
+        return ataqueVilaoBase;
+    }
+
+    public boolean estaVivo() {
+        return vidaVilao > 0;
+    }
+
+    public void atacar(Heroi heroi) {
+        heroi.receberDano(getAtaqueVilao());
+        System.out.println("O vilão causou " + getAtaqueVilao() + " de dano em você!");
+    }
+
+    public void receberDano(int dano) {
+        vidaVilao -= dano;
+    }
+    
+     public void atacar(Heroi heroi, boolean heroiEstaDefendendo) {
+        heroi.receberDano(getAtaqueVilao(), heroiEstaDefendendo);
+        System.out.println("O vilão causou " + getAtaqueVilao() + " de dano em você!");
+    }
+    
+}
+
