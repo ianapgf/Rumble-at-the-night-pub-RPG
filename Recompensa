@@ -1,1 +1,32 @@
+package com.mycompany.jogorpg3;
+
+public class Recompensa {
+    private String nome;
+    private String descricao;
+    private Arma arma;
+    private Armadura armadura;
+
+    public Recompensa(String nome, String descricao, Arma arma, Armadura armadura) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.arma = arma;
+        this.armadura = armadura;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public Arma getArma() {
+        return arma;
+    }
+
+    public Armadura getArmadura() {
+        return armadura;
+    }
+}
 
